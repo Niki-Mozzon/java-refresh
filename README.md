@@ -1,2 +1,2 @@
 # java-refresh
-A quick and pactical refresh on Java
+A quick and practical refresh on Java
