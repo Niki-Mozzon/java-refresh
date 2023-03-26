@@ -1,5 +1,6 @@
 package com.javarefresh.inventoryservice.controller;
 
+import com.javarefresh.inventoryservice.dto.InventoryRequest;
 import com.javarefresh.inventoryservice.dto.InventoryResponse;
 import com.javarefresh.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,17 @@ public class InventoryController {
 
     @Autowired
     private final InventoryService inventoryService;
+
+    @PostMapping
+    public ResponseEntity<InventoryResponse> addToStock(@RequestBody InventoryRequest inventory) {
+        return new ResponseEntity<>(inventoryService.addToStock(inventory), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<InventoryResponse>> getAll() {
+        return new ResponseEntity<>(inventoryService.getAll(), HttpStatus.OK);
+    }
+
 
     @GetMapping("/{skuCode}")
     public ResponseEntity<Boolean> isInStock(@PathVariable String skuCode) {
